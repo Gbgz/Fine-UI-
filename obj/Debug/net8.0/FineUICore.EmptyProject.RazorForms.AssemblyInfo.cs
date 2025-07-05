@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FineUICore.EmptyProject.RazorForms")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dea47195cc3dbf785b47ee4ae0349438e53b5382")]
 [assembly: System.Reflection.AssemblyProductAttribute("FineUICore.EmptyProject.RazorForms")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FineUICore.EmptyProject.RazorForms")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

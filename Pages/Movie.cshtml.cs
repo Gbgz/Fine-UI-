@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace FineUICore.EmptyProject.RazorPages
@@ -43,8 +44,33 @@ namespace FineUICore.EmptyProject.RazorPages
         }
         private async Task LoadDataAsync()
         {
-            Grid1.DataSource = await DB.Movies.ToListAsync();
+            IQueryable<Movie> q = DB.Movies;
+
+            // 搜索框
+            var searchMessage = ttbSearchMessage.Text?.Trim();
+            if (!string.IsNullOrEmpty(searchMessage))
+            {
+                q = q.Where(s => s.Title.Contains(searchMessage));
+            }
+
+            Grid1.DataSource = await q.ToListAsync();
             Grid1.DataBind();
+        }
+        protected async Task ttbSearchMessage_Trigger1ClickAsync(object sender, EventArgs e)
+        {
+            // 清空输入框的内容，并隐藏清空图标
+            ttbSearchMessage.Text = String.Empty;
+            ttbSearchMessage.ShowTrigger1 = false;
+
+            await LoadDataAsync();
+        }
+
+        protected async Task ttbSearchMessage_Trigger2ClickAsync(object sender, EventArgs e)
+        {
+            // 显示清空图标
+            ttbSearchMessage.ShowTrigger1 = true;
+
+            await LoadDataAsync();
         }
     }
 }
