@@ -15,8 +15,9 @@ namespace FineUICore.EmptyProject.RazorPages
         //protected FineUICore.Grid Grid1 { get; set; }
         protected async Task Page_LoadAsync(object sender, EventArgs e)
         {
-            Grid1.DataSource = await DB.Movies.ToListAsync();
-            Grid1.DataBind();
+            //Grid1.DataSource = await DB.Movies.ToListAsync();
+            //Grid1.DataBind();
+            await LoadDataAsync();
 
             // 新增按钮的客户端事件
             btnNew.OnClientClick = Window1.GetShowReference(Url.Content("~/MovieNew"), "新增");
@@ -53,6 +54,13 @@ namespace FineUICore.EmptyProject.RazorPages
                 q = q.Where(s => s.Title.Contains(searchMessage));
             }
 
+            // 获取总记录数（在添加条件之后，排序和分页之前）
+            Grid1.RecordCount = await q.CountAsync();
+
+            // 排列和数据库分页
+            q = SortAndPage<Movie>(q, Grid1);
+
+            // 绑定表格数据
             Grid1.DataSource = await q.ToListAsync();
             Grid1.DataBind();
         }
@@ -70,6 +78,15 @@ namespace FineUICore.EmptyProject.RazorPages
             // 显示清空图标
             ttbSearchMessage.ShowTrigger1 = true;
 
+            await LoadDataAsync();
+        }
+        protected async Task Grid1_SortAsync(object sender, GridSortEventArgs e)
+        {
+            await LoadDataAsync();
+        }
+
+        protected async Task Grid1_PageIndexChangedAsync(object sender, GridPageEventArgs e)
+        {
             await LoadDataAsync();
         }
     }

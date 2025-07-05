@@ -31,13 +31,17 @@
                 </Rows>
             </f:Form>
             <br/>
-            <f:Grid ID="Grid1" BoxFlex="1" ShowBorder="true" ShowHeader="false" DataIDField="ID" DataTextField="Title" OnRowCommand="Grid1_RowCommand">
+            @* <f:Grid ID="Grid1" BoxFlex="1" ShowBorder="true" ShowHeader="false" DataIDField="ID" DataTextField="Title" OnRowCommand="Grid1_RowCommand"> *@
+            <f:Grid ID="Grid1" BoxFlex="1" ShowBorder="true" ShowHeader="false" DataIDField="ID" DataTextField="Title"
+                    AllowPaging="true" IsDatabasePaging="true" PageSize="5" OnPageIndexChanged="Grid1_PageIndexChanged"
+                    AllowSorting="true" SortField="Title" SortDirection="DESC" OnSort="Grid1_Sort"
+                    OnRowCommand="Grid1_RowCommand">
                 <Columns>
                     <f:RowNumberField />
-                    <f:RenderField For="Movies.First().Title" ExpandUnusedSpace="true" />
-                    <f:RenderField For="Movies.First().ReleaseDate" FieldFormat="yyyy-MM-dd" Width="150" />
-                    <f:RenderField For="Movies.First().Genre" />
-                    <f:RenderField For="Movies.First().Price" />
+                    <f:RenderField For="Movies.First().Title" QuickSortField="true" ExpandUnusedSpace="true" />
+                    <f:RenderField For="Movies.First().ReleaseDate" QuickSortField="true" FieldFormat="yyyy-MM-dd" Width="150" />
+                    <f:RenderField For="Movies.First().Genre" QuickSortField="true" />
+                    <f:RenderField For="Movies.First().Price" QuickSortField="true" />
                     <f:RenderField EnableColumnHide="false" EnableHeaderMenu="false" Width="100">
                         <Commands>
                             <f:Command CommandName="Edit" Icon="Pencil" ToolTip="编辑"

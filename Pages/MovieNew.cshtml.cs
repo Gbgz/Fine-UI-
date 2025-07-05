@@ -25,7 +25,8 @@ namespace FineUICore.QuickStart
             DB.Movies.Add(Movie);
             await DB.SaveChangesAsync();
 
-            Alert.Show("保存成功！");
+            Alert.Show("保存成功！", string.Empty, MessageBoxIcon.Success, ActiveWindow.GetHidePostBackReference());
+
         }
 
     }
