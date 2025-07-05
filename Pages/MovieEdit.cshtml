@@ -1,0 +1,37 @@
+﻿@page "{id:int}"
+@model FineUICore.QuickStart.MovieEditModel
+@{
+    ViewData["Title"] = "MovieEdit";
+}
+
+@section body {
+
+    <f:Panel ID="Panel1" ShowBorder="false" ShowHeader="false" AutoScroll="true" IsViewPort="true" Layout="Fit">
+        <Toolbars>
+            <f:Toolbar Position="Bottom" ToolbarAlign="Center">
+                <Items>
+                    <f:Button ID="BtnClose" IconFont="Close" Text="关闭">
+                        <Listeners>
+                            <f:Listener Event="click" Handler="F.activeWindow.hide();"></f:Listener>
+                        </Listeners>
+                    </f:Button>
+                    <f:ToolbarSeparator></f:ToolbarSeparator>
+                    <f:Button ID="btnSaveClose" _ValidateForms="SimpleForm1" IconFont="Save" Text="保存后关闭"
+                              OnClick="btnSaveClose_Click" OnClickFields="SimpleForm1"></f:Button>
+                </Items>
+            </f:Toolbar>
+        </Toolbars>
+        <Items>
+            <f:SimpleForm ID="SimpleForm1" ShowBorder="false" ShowHeader="false" BodyPadding="10">
+                <Items>
+                    <f:HiddenField For="Movie.ID"></f:HiddenField>
+                    <f:TextBox For="Movie.Title"></f:TextBox>
+                    <f:DatePicker For="Movie.ReleaseDate"></f:DatePicker>
+                    <f:TextBox For="Movie.Genre"></f:TextBox>
+                    <f:NumberBox For="Movie.Price"></f:NumberBox>
+                </Items>
+            </f:SimpleForm>
+        </Items>
+    </f:Panel>
+
+}

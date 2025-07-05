@@ -1,0 +1,20 @@
+﻿@page
+@model FineUICore.QuickStart.MovieNewModel
+@{
+    ViewData["Title"] = "MovieNew";
+}
+
+@section body {
+
+    <f:SimpleForm ID="SimpleForm1" ShowBorder="true" ShowHeader="true" BodyPadding="10" Title="新建" IsViewPort="true">
+        <Items>
+            <f:TextBox For="Movie.Title"></f:TextBox>
+            <f:DatePicker For="Movie.ReleaseDate"></f:DatePicker>
+            <f:TextBox For="Movie.Genre"></f:TextBox>
+            <f:NumberBox For="Movie.Price"></f:NumberBox>
+            <f:Button ID="btnSaveClose" _ValidateForms="SimpleForm1" IconFont="Save" Text="保存后关闭"
+                      OnClick="btnSaveClose_Click" OnClickFields="SimpleForm1"></f:Button>
+        </Items>
+    </f:SimpleForm>
+
+}
